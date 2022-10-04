@@ -1,0 +1,28 @@
+--
+
+- hosts: ngcs_devices
+  collections:
+    - opengear_om.om
+  connection: httpapi
+  gather_facts: no
+  tasks:
+    - name: Add SNMP
+      opengear.om.om_services:
+        config:
+          snmpd:
+            enabled: yes
+            port: 161
+            enable_legacy_versions: no
+            enable_secure_snmp: yes
+            protocol: UDP
+            security_name: {{ security_name }}
+            security_level: priv
+            auth_use_plaintext: yes
+            auth_password: {{ auth_password }}!
+            auth_protocol: SHA
+            priv_use_plaintext: yes
+            priv_password: {{ priv_password }}
+            priv_protocol: AES
+        
+        state:
+          overridden

@@ -7,6 +7,16 @@ import json
 from ansible.module_utils.connection import ConnectionError
 from ansible.plugins.httpapi import HttpApiBase
 
+DOCUMENTATION = """
+---
+author: Opengear
+httpapi : om
+short_description: HttpApi Plugin for Opengear Operations Manager
+description:
+  - This HttpApi plugin provides methods to connect to Opengear Operations Manager over a HTTP(S)-based api.
+version_added: "1.02"
+"""
+
 def handle_response(response):
     if response:
         handled_response = json.loads(response.getvalue())
